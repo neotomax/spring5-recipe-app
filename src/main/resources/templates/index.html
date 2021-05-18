@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Framework Guru</title>
+</head>
+<body>
+<h1>Recipes</h1>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Difficulty</th>
+        <th>Cook Time</th>
+    </tr>
+    <tr th:each="recipe : ${recipes}">
+        <td th:text="${recipe.description}">123</td>
+        <td th:text="${recipe.difficulty}">Worry about Harry</td>
+        <td th:text="${recipe.cookTime}">Oracles Printing Ltd.</td>
+    </tr>
+
+</table>
+
+
+</body>
+</html>
