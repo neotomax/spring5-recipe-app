@@ -4,6 +4,7 @@ import guru.springframework.domain.*;
 import guru.springframework.repositories.CategoryRepository;
 import guru.springframework.repositories.RecipeRepository;
 import guru.springframework.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Component
 public class LoadRecipes implements CommandLineRunner {
     private final RecipeRepository recipeRepository;
@@ -26,7 +28,7 @@ public class LoadRecipes implements CommandLineRunner {
 
 
     private List<Recipe> addRecipes() {
-
+        log.debug("add some recipes");
         List<Recipe> recipes = new ArrayList<>(2);
 
         //get UOMs
@@ -92,7 +94,7 @@ public class LoadRecipes implements CommandLineRunner {
 
 
 
-
+        log.debug("add guacamole recipe");
         Recipe guacamoleRecipe = new Recipe();
 
         guacamoleRecipe.setPrepTime(10);
@@ -144,6 +146,7 @@ public class LoadRecipes implements CommandLineRunner {
         recipes.add(guacamoleRecipe);
 
         //Yummy Tacos
+        log.debug("add yummy tacos recipe");
         Recipe tacosRecipe = new Recipe();
         tacosRecipe.setDescription("Spicy Grilled Chicken Taco");
         tacosRecipe.setCookTime(9);
@@ -211,9 +214,10 @@ public class LoadRecipes implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
+        log.debug("start Data-Loading");
         List<Recipe> recipes  = addRecipes();
         recipeRepository.saveAll(recipes);
+        log.debug("Recipe Data loaded");
         System.out.println("Recipe Data loaded!");
     }
 }
